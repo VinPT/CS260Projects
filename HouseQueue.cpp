@@ -78,7 +78,7 @@ House HouseQueue::dequeue() //you cant refill this thing once it is emptyed ....
 
 		HouseNode *tempNextHouse = tail->nextHouse;
 		result = tail->house;
-		delete tail;
+		//delete tail;
 		tail = tempNextHouse;
 
 	}
@@ -108,6 +108,6 @@ bool HouseQueue::queueEmpty()
 
 HouseQueue::~HouseQueue()
 {
-	delete head;
-	delete tail;
+	//delete head;
+	//delete tail;
 }

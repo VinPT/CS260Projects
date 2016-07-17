@@ -22,7 +22,7 @@ void HouseStack::pushHouse(House newhouse)
 	head = newHouseNode;
 
 	
-	delete newHouseNode;
+	//delete newHouseNode;
 }
 
 House HouseStack::popHouse()
@@ -31,7 +31,7 @@ House HouseStack::popHouse()
 	House house = tempHouseNode->house;
 	head = head->nextHouse;
 	
-	delete tempHouseNode;
+	//delete tempHouseNode;
 	
 	return house;
 }
@@ -58,6 +58,6 @@ bool HouseStack::stackEmpty()
 
 HouseStack::~HouseStack()
 {
-	delete head;
+	//delete head;
 }
 

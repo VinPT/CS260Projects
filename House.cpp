@@ -106,8 +106,8 @@ char* House::getDescription() const
 
 House::~House()
 {
-	delete adress;
-	delete description;		
+	//delete adress;
+	//delete description;		
 }
 
 
