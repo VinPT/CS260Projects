@@ -6,7 +6,7 @@
 
 #include "House.h"
 
-#define MAX_CHAR_SIZE 101
+#define MAX_CHAR_SIZE 901
 
 using namespace std;
 
