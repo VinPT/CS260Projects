@@ -24,7 +24,8 @@ public:
 	void enqueue(House newHouse);
 	House dequeue();
 	void display();
-	bool queueEmpty();
+	bool queueNotEmpty();
+
 
 	~HouseQueue();
 private:

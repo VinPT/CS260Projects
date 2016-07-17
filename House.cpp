@@ -15,6 +15,13 @@ House::House()
 	description = NULL;
 }
 
+House::House(const House &otherHouse)
+{
+	adress = NULL;
+	description = NULL;
+	*this = otherHouse;
+}
+
 //House overloads live here
 
 std::ostream& operator<<(std::ostream& output, const House& house)
@@ -30,7 +37,7 @@ const House& House::operator = (const House& house)
 		return *this;
 	}
 	
-	setAdress(house.getAdress()); //the pluss one makes sure that the end charecter has room
+	setAdress(house.getAdress()); 
 	
 	sqFootage = house.getSqFootage();
 	numBedrooms = house.getNumBedrooms();
@@ -42,11 +49,15 @@ const House& House::operator = (const House& house)
 }
 
 
-       //Setters yay
+//Setters yay
 void House::setAdress(char* newAdress)  //<--not sure if using void is bad code ... probably is
 {
-	adress = new char[strlen(newAdress)+1];
 
+	if (adress != NULL) { // YIKES this thing saves me so much ... need to find out why
+		delete [] adress;
+		adress = NULL;
+	}
+	adress = new char[strlen(newAdress)+1];
 	strcpy( adress, newAdress);
         return;
 }
@@ -71,6 +82,10 @@ void House::setNumBathrooms(float newNumBathrooms) //<- dont forget half baths
 
 void House::setDescription(char* newDescription)
 {
+	if (description != NULL) {//Yikes again
+		delete [] description;
+		description = NULL;
+	}
         description = new char[strlen(newDescription)+1];
 
 	strcpy( description, newDescription);
@@ -106,9 +121,13 @@ char* House::getDescription() const
 
 House::~House()
 {
-	//delete adress;
-	//delete description;		
+	if (adress != NULL) {
+		delete [] adress;
+		adress = NULL;
+	}
+	if (description != NULL) {
+		delete [] description;		
+		description = NULL;
+	}
 }
-
-
 

@@ -23,7 +23,7 @@ int main()
 	housesOnList->display();
 	
 	house = housesOnList->dequeue();
-	while(housesOnList->queueEmpty())
+	while(housesOnList->queueNotEmpty())
 	{
 	
 		cout << "\nnext house to be visited:" << house << endl;
@@ -57,7 +57,7 @@ int main()
 	cout << "\nOn the way back to the office: " << endl << endl;
 
 
-	while(houseInterested->stackEmpty())
+	while(houseInterested->stackNotEmpty())
 
 	{
 		house = houseInterested->popHouse();

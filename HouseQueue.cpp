@@ -3,6 +3,9 @@
 
 HouseQueue::HouseQueue(char *filename) // <- constructor constructs from file
 {
+	head = NULL;
+	tail = NULL;
+
 	ifstream houseDataFile(filename);
 	if (houseDataFile.good()) //check the file is open
 	{
@@ -34,7 +37,6 @@ HouseQueue::HouseQueue(char *filename) // <- constructor constructs from file
 			tempHouse.setDescription(tempChar);
 			houseDataFile.ignore(MAX_CHAR_SIZE, ';');
 
-       
 			enqueue(tempHouse);
 
 
@@ -58,28 +60,30 @@ void HouseQueue::enqueue(House newHouse)// Thinking overloading the input oppara
 
 	newHouseNode->house = newHouse;
 	newHouseNode->nextHouse = NULL;
-	if(NULL != head)//buypass this code if no house in head taking care of getting the pointer right in all cases
+	if(NULL != tail)//buypass this code if no house in head taking care of getting the pointer right in all cases
 	{
-		head->nextHouse = newHouseNode;
+		tail->nextHouse = newHouseNode;
 	}
-	else//basicly -> if(NULL == tail)
+	else//basicly -> if(NULL == head)
 	{
-		tail = newHouseNode;
+		head = newHouseNode;
 	}
-	head =newHouseNode;
+	tail =newHouseNode;
+	return;
 }
 
 House HouseQueue::dequeue() //you cant refill this thing once it is emptyed .... it will break here if you try to do so
 {
 	House result;
 
-	if (NULL != tail)
+	if (NULL != head)
 	{
 
-		HouseNode *tempNextHouse = tail->nextHouse;
-		result = tail->house;
-		//delete tail;
-		tail = tempNextHouse;
+		HouseNode *tempNextHouse = head->nextHouse;
+		result = head->house;
+		head->nextHouse = NULL;
+		delete head;
+		head = tempNextHouse;
 
 	}
 
@@ -88,19 +92,20 @@ House HouseQueue::dequeue() //you cant refill this thing once it is emptyed ....
 
 void HouseQueue::display() // would it not be cleaner to overload the output opparator
 {
-	HouseNode *currentHouseNode = tail;
+
+	HouseNode *currentHouseNode = head;
 
 	do //brakes if no houses there
 	{
 	cout<< currentHouseNode->house << endl;
 	currentHouseNode = currentHouseNode->nextHouse;
-	}while(currentHouseNode != head);//stops us at head of linked list
+	}while(currentHouseNode != tail);//stops us at head of linked list
 }
 
-bool HouseQueue::queueEmpty()
+bool HouseQueue::queueNotEmpty()
 {
 	bool result = false;
-	if (NULL != tail)
+	if (NULL != head)
 		result = true;
 
 	return result;
@@ -108,6 +113,8 @@ bool HouseQueue::queueEmpty()
 
 HouseQueue::~HouseQueue()
 {
-	//delete head;
-	//delete tail;
+	while (queueNotEmpty())
+	{
+		(void)dequeue();
+	}
 }

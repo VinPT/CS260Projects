@@ -11,6 +11,7 @@ class House
 
 public:
 	House();
+	House(const House &otherHouse);
 	
 	//Setters yay
 	void setAdress(char* newAdress);  //<--not sure if using void is bad code ... probably is

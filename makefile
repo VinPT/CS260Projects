@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-c -Wall
+CFLAGS=-c -Wall -ggdb
 LDFLAGS=
 SOURCES=Project2Main.cpp HouseQueue.cpp HouseStack.cpp House.cpp 
 OBJECTS=$(SOURCES:.cpp=.o)

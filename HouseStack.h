@@ -12,7 +12,7 @@ public:
         void pushHouse(House newHouse);
         House popHouse();
         void display();
-	bool stackEmpty();
+	bool stackNotEmpty();
 
 	~HouseStack();
 private:
