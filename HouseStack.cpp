@@ -1,10 +1,17 @@
+//This is the houseStack deals in houses we want to look at again
+//Written by Vinayaka Patrick Thompson;
+//Sources Project1, Project2Description, Project2DriverCode
+//https://github.com/caspen/CS260Projects.git
+
 #include "HouseStack.h"
 
+//initalize values
 HouseStack::HouseStack()
 {
 	head = NULL;
 }
 
+//Add to top
 void HouseStack::pushHouse(House newhouse)
 {
 	HouseNode *newHouseNode = new HouseNode();
@@ -23,6 +30,7 @@ void HouseStack::pushHouse(House newhouse)
 
 }
 
+//Remove from top
 House HouseStack::popHouse()
 {
 	HouseNode *tempHouseNode = head;
@@ -33,6 +41,8 @@ House HouseStack::popHouse()
 	
 	return house;
 }
+
+//Output to screen
 void HouseStack::display()//we never use this but i was told to make it
 {
 	HouseNode *currentHouseNode = head;
@@ -44,6 +54,8 @@ void HouseStack::display()//we never use this but i was told to make it
 	}
 
 }
+
+//used to run loops in main project
 bool HouseStack::stackNotEmpty()
 {
         bool result = false;
@@ -54,6 +66,7 @@ bool HouseStack::stackNotEmpty()
 
 }
 
+//desctruction
 HouseStack::~HouseStack()
 {
 	while (stackNotEmpty())

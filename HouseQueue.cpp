@@ -1,3 +1,7 @@
+//This is the house queue deals with adding the houses from list and giving them to you one by one 
+//Written by Vinayaka Patrick Thompson;
+//Sources Project1, Project2Description, Project2DriverCode
+//https://github.com/caspen/CS260Projects.git
 #include "HouseQueue.h"
 
 
@@ -9,7 +13,7 @@ HouseQueue::HouseQueue(char *filename) // <- constructor constructs from file
 	ifstream houseDataFile(filename);
 	if (houseDataFile.good()) //check the file is open
 	{
-		// read away
+		// read starts here
 		while (true != houseDataFile.eof())
 		{
 			cout << "Loading Houses..."<<endl;
@@ -18,7 +22,7 @@ HouseQueue::HouseQueue(char *filename) // <- constructor constructs from file
 
 
 			houseDataFile.get(tempChar, MAX_CHAR_SIZE,';');
-			tempHouse.setAdress(tempChar);
+			tempHouse.setAddress(tempChar);
 			houseDataFile.ignore(MAX_CHAR_SIZE, ';');
 
 			houseDataFile.get(tempChar, MAX_CHAR_SIZE,';');
@@ -48,13 +52,14 @@ HouseQueue::HouseQueue(char *filename) // <- constructor constructs from file
 
 	}
 
-	else
+	else // Makes sure to tell you you dont have your data file
 	{
 		cout << "Failed to open file to load houses";
 	}
 }
 
-void HouseQueue::enqueue(House newHouse)// Thinking overloading the input opparator might be a better plan
+//adds houses to the tail
+void HouseQueue::enqueue(House newHouse)
 {
 	HouseNode *newHouseNode = new HouseNode();
 
@@ -72,7 +77,8 @@ void HouseQueue::enqueue(House newHouse)// Thinking overloading the input oppara
 	return;
 }
 
-House HouseQueue::dequeue() //you cant refill this thing once it is emptyed .... it will break here if you try to do so
+// removes houses from queue and deletes the node removed
+House HouseQueue::dequeue() 
 {
 	House result;
 
@@ -87,21 +93,23 @@ House HouseQueue::dequeue() //you cant refill this thing once it is emptyed ....
 
 	}
 
-	return result;//acts like else statement
+	return result;//acts like else statement. Empty house returned if no houses in queue
 }
 
-void HouseQueue::display() // would it not be cleaner to overload the output opparator
+// Desplays Houses
+void HouseQueue::display() // would it not be cleaner to overload the output opparator as we assume there is a terminal to output to here
 {
 
 	HouseNode *currentHouseNode = head;
 
-	do //brakes if no houses there
+	do //brakes if no houses in queue
 	{
 	cout<< currentHouseNode->house << endl;
 	currentHouseNode = currentHouseNode->nextHouse;
-	}while(currentHouseNode != tail);//stops us at head of linked list
+	}while(currentHouseNode != tail);//stops us at tail of linked list
 }
 
+//tells us if we are empty
 bool HouseQueue::queueNotEmpty()
 {
 	bool result = false;
@@ -111,9 +119,10 @@ bool HouseQueue::queueNotEmpty()
 	return result;
 }
 
+//Destructor
 HouseQueue::~HouseQueue()
 {
-	while (queueNotEmpty())
+	while (queueNotEmpty())//<- Hygiene has been added to remove odd smells from program.
 	{
 		(void)dequeue();
 	}

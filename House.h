@@ -1,3 +1,7 @@
+//This is the house object that contains the address and other atrebutes of a house 
+//Written by Vinayaka Patrick Thompson;
+//Sources Project1, Project2Description, Project2DriverCode
+//https://github.com/caspen/CS260Projects.git
 #pragma once
 
 #include <string.h>
@@ -14,13 +18,13 @@ public:
 	House(const House &otherHouse);
 	
 	//Setters yay
-	void setAdress(char* newAdress);  //<--not sure if using void is bad code ... probably is
+	void setAddress(char* newAdress);  //<--not sure if using void is bad code ... probably is
 	void setSqFootage(int newSqFootage);
 	void setNumBedrooms(int newNumBedrooms);
 	void setNumBathrooms(float newNumBathrooms);
 	void setDescription(char* newDescription);
 
-	char* getAdress() const;
+	char* getAddress() const;
         int   getSqFootage() const;
         int   getNumBedrooms() const;
         float getNumBathrooms() const;
@@ -31,7 +35,7 @@ public:
 	~House();
 
 private:
-	char* adress;
+	char* address;
 	int   sqFootage;
 	int   numBedrooms;
 	float numBathrooms;

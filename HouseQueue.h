@@ -1,3 +1,7 @@
+//This is the houseQueue contains a queue of houses and is built with data from a file
+//Written by Vinayaka Patrick Thompson;
+//Sources Project1, Project2Description, Project2DriverCode
+//https://github.com/caspen/CS260Projects.git
 #pragma once
 
 #include <stdlib.h>

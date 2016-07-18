@@ -1,14 +1,14 @@
-#include "House.h"
-
-//This is the house object that contains the adress and other atrebutes of a house 
+//This is the house object that contains the address and other atrebutes of a house 
 //Written by Vinayaka Patrick Thompson;
 //Sources Project1, Project2Description, Project2DriverCode
-//I need to start using sorce control
+//https://github.com/caspen/CS260Projects.git
+
+#include "House.h"
 
 
 House::House()
 {
-	adress = NULL;
+	address = NULL;
 	sqFootage = 0;
 	numBedrooms = 0;
 	numBathrooms = 0.0; //<-- this one is a float because of half baths
@@ -17,7 +17,7 @@ House::House()
 
 House::House(const House &otherHouse)
 {
-	adress = NULL;
+	address = NULL;
 	description = NULL;
 	*this = otherHouse;
 }
@@ -26,7 +26,7 @@ House::House(const House &otherHouse)
 
 std::ostream& operator<<(std::ostream& output, const House& house)
 {
-	output << house.adress<<"; "<< house.sqFootage <<"; "<< house.numBedrooms <<"; "<< house.numBathrooms <<"; "<< house.description <<endl;
+	output << house.address<<"; "<< house.sqFootage <<"; "<< house.numBedrooms <<"; "<< house.numBathrooms <<"; "<< house.description <<endl;
 	return output;
 }
 
@@ -37,7 +37,7 @@ const House& House::operator = (const House& house)
 		return *this;
 	}
 	
-	setAdress(house.getAdress()); 
+	setAddress(house.getAddress()); 
 	
 	sqFootage = house.getSqFootage();
 	numBedrooms = house.getNumBedrooms();
@@ -49,16 +49,16 @@ const House& House::operator = (const House& house)
 }
 
 
-//Setters yay
-void House::setAdress(char* newAdress)  //<--not sure if using void is bad code ... probably is
+//Setters start here
+void House::setAddress(char* newAddress)  //<--not sure if using void is bad code ... probably is
 {
 
-	if (adress != NULL) { // YIKES this thing saves me so much ... need to find out why
-		delete [] adress;
-		adress = NULL;
+	if (address != NULL) { // YIKES this thing saves me so much ... need to find out why
+		delete [] address;
+		address = NULL;
 	}
-	adress = new char[strlen(newAdress)+1];
-	strcpy( adress, newAdress);
+	address = new char[strlen(newAddress)+1];
+	strcpy( address, newAddress);
         return;
 }
 
@@ -94,9 +94,9 @@ void House::setDescription(char* newDescription)
 
 //Getters start here
 
-char* House::getAdress() const
+char* House::getAddress() const
 {
-        return adress;
+        return address;
 }
 
 int   House::getSqFootage() const
@@ -121,9 +121,9 @@ char* House::getDescription() const
 
 House::~House()
 {
-	if (adress != NULL) {
-		delete [] adress;
-		adress = NULL;
+	if (address != NULL) {
+		delete [] address;
+		address = NULL;
 	}
 	if (description != NULL) {
 		delete [] description;		
